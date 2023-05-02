@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #question {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+}
+
+#buttons {
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+}
+
+#no {
+  background-color: red;
+  color: white;
+  position: absolute;
+  font-size: 1vw; /* set font size relative to viewport width */
+  padding: 3vw 6vw; /* set padding relative to viewport width */
+  border-radius: 2vw; /* set border radius relative to viewport width */
+}
+
+@media (max-width: 768px) { /* adjust styles for smaller screens */
+  #no {
+    font-size: 8vw;
+    padding: 5vw 10vw;
+    border-radius: 3vw;
+  }
+}
+
+#no.jumping {
+  animation: jump 0.5s ease-out;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+    </style>
+</head>
+<body>
+    <div id="question">Are you gay?</div>
+<div id="buttons">
+  <button onclick="y()" id="yes">Yes</button>
+  <button id="no">No</button>
+</div>
+
+<script>
+    const noButton = document.getElementById('no');
+    const yesButton = document.getElementById('yes');
+    function y() {
+        alert('Thank You for confirming')
+    }
+
+
+noButton.addEventListener('mouseenter', () => {
+  noButton.classList.add('jumping');
+  const randomX = Math.floor(Math.random() * (window.innerWidth - noButton.offsetWidth));
+  const randomY = Math.floor(Math.random() * (window.innerHeight - noButton.offsetHeight));
+  noButton.style.left = `${randomX}px`;
+  noButton.style.top = `${randomY}px`;
+});
+
+noButton.addEventListener('animationend', () => {
+  noButton.classList.remove('jumping');
+});
+
+</script>
+</body>
+</html>
